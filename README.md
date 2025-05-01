@@ -1,6 +1,11 @@
 # shelly-treppenhausautomat
 Shelly 2 PRO Treppenhausautomat
 
+## Input settings
+Make sure to set your Input/Output settings to "Button", "Detached" - Action onpower on for XXX "Turn OFF"
+
+## Compatibility
+Tested on a Shelly Pro2 Firmware 1.5.1
 
 ```
 let RELAY_ID = 0;
