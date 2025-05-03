@@ -13,7 +13,7 @@ let INPUT_ID = 0;
 
 let TIMER_DURATION_MS = 60000;      // Total on time
 let BLINK_BEFORE_OFF_MS = 10000;     // Start blinking 10s before turn-off
-let BLINK_INTERVAL_MS = 500;         // Blink every 0.5s
+let BLINK_INTERVAL_MS = 750;         // Blink every 0.5s
 let BLINK_COUNT = 3;                 // 3 blinks (on/off cycles)
 
 let off_timer = null;
@@ -52,11 +52,10 @@ function startBlinkSequence() {
     blink_step += 1;
 
     if (blink_step > BLINK_COUNT * 2) {
-      // End blink sequence, ensure light stays ON
+      // End blink sequence — do not force the light ON
       print("Blinking done");
       Timer.clear(blink_timer);
       blink_timer = null;
-      Shelly.call("Switch.Set", { id: RELAY_ID, on: true });
       return;
     }
 
@@ -65,6 +64,7 @@ function startBlinkSequence() {
     Shelly.call("Switch.Set", { id: RELAY_ID, on: original_state });
   });
 }
+
 
 // Event handler
 Shelly.addEventHandler(function (event) {
