@@ -68,9 +68,8 @@ function startBlinkSequence() {
 
 // Event handler
 Shelly.addEventHandler(function (event) {
-  print("Event: " + JSON.stringify(event));
-
-  if (event.info.component === "input:" + INPUT_ID && event.info.event === "btn_down") {
+  print("=== EVENT: " + JSON.stringify(event));
+  if (event.info.component === "input:" + INPUT_ID && event.info.event === "single_push" ) {
     Shelly.call("Switch.GetStatus", { id: RELAY_ID }, function (status) {
       if (status.output || blink_timer !== null) {
         // Turn off and cancel
